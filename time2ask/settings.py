@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     # third-party apps
     'django_extensions',
     'rest_framework',
+    'rest_framework.authtoken',  # we are using now rest framework token
 
     # my apps
     'users.apps.UsersConfig',
@@ -118,3 +119,10 @@ STATIC_URL = env('STATIC_URL', default='/static/')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
