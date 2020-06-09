@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework',
     'rest_framework.authtoken',  # we are using now rest framework token
+    'webpack_loader', # it reads from webpack-stats and inject in index.html
 
     # my apps
     'users.apps.UsersConfig',
@@ -125,4 +126,11 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     )
+}
+# tell django where webpack loader, where the stats.json is
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'dist/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'frontend', 'webpack-stats.json'),
+    }
 }
